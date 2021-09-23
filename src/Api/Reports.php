@@ -2,17 +2,16 @@
 
 namespace Amz\Reports\Api;
 
-use Amz\Reports\Model\CancelReportResponse as CancelReportResponse;
-use Amz\Reports\Model\CancelReportScheduleResponse as CancelReportScheduleResponse;
 use Amz\Reports\Model\CreateReportResponse as CreateReportResponse;
 use Amz\Reports\Model\CreateReportScheduleResponse as CreateReportScheduleResponse;
 use Amz\Reports\Model\CreateReportScheduleSpecification as CreateReportScheduleSpecification;
 use Amz\Reports\Model\CreateReportSpecification as CreateReportSpecification;
-use Amz\Reports\Model\GetReportDocumentResponse as GetReportDocumentResponse;
-use Amz\Reports\Model\GetReportResponse as GetReportResponse;
-use Amz\Reports\Model\GetReportScheduleResponse as GetReportScheduleResponse;
-use Amz\Reports\Model\GetReportSchedulesResponse as GetReportSchedulesResponse;
+use Amz\Reports\Model\ErrorList as ErrorList;
 use Amz\Reports\Model\GetReportsResponse as GetReportsResponse;
+use Amz\Reports\Model\Report as Report;
+use Amz\Reports\Model\ReportDocument as ReportDocument;
+use Amz\Reports\Model\ReportSchedule as ReportSchedule;
+use Amz\Reports\Model\ReportScheduleList as ReportScheduleList;
 use OpenAPI\Runtime\AbstractAPI as AbstractAPI;
 
 class Reports extends AbstractAPI
@@ -49,11 +48,11 @@ class Reports extends AbstractAPI
      *                       include this token as the only parameter. Specifying nextToken with any other
      *                       parameters will cause the request to fail.
      *
-     * @return GetReportsResponse
+     * @return GetReportsResponse|ErrorList
      */
-    public function get(array $queries = []): GetReportsResponse
+    public function get(array $queries = [])
     {
-        return $this->client->request('getReports', 'GET', '/reports/2020-09-04/reports',
+        return $this->client->request('getReports', 'GET', '/reports/2021-06-30/reports',
             [
                 'query' => $queries,
             ]
@@ -83,11 +82,11 @@ class Reports extends AbstractAPI
      * For more information, see "Usage Plans and Rate Limits" in the Selling Partner
      * API documentation.
      *
-     * @return CreateReportResponse
+     * @return CreateReportResponse|ErrorList
      */
-    public function createReport(CreateReportSpecification $Model): CreateReportResponse
+    public function createReport(CreateReportSpecification $Model)
     {
-        return $this->client->request('createReport', 'POST', '/reports/2020-09-04/reports',
+        return $this->client->request('createReport', 'POST', '/reports/2021-06-30/reports',
             [
                 'json' => $Model->getArrayCopy(),
             ]
@@ -110,11 +109,11 @@ class Reports extends AbstractAPI
      * @param $reportId The identifier for the report. This identifier is unique only
      * in combination with a seller ID.
      *
-     * @return GetReportResponse
+     * @return Report|ErrorList
      */
-    public function getReport($reportId): GetReportResponse
+    public function getReport($reportId)
     {
-        return $this->client->request('getReport', 'GET', "/reports/2020-09-04/reports/{$reportId}",
+        return $this->client->request('getReport', 'GET', "/reports/2021-06-30/reports/{$reportId}",
             [
             ]
         );
@@ -137,11 +136,11 @@ class Reports extends AbstractAPI
      * @param $reportId The identifier for the report. This identifier is unique only
      * in combination with a seller ID.
      *
-     * @return CancelReportResponse
+     * @return ErrorList
      */
-    public function cancelReport($reportId): CancelReportResponse
+    public function cancelReport($reportId): ErrorList
     {
-        return $this->client->request('cancelReport', 'DELETE', "/reports/2020-09-04/reports/{$reportId}",
+        return $this->client->request('cancelReport', 'DELETE', "/reports/2021-06-30/reports/{$reportId}",
             [
             ]
         );
@@ -162,11 +161,11 @@ class Reports extends AbstractAPI
      * @param array $queries options:
      *                       'reportTypes'		A list of report types used to filter report schedules
      *
-     * @return GetReportSchedulesResponse
+     * @return ReportScheduleList|ErrorList
      */
-    public function getReportSchedules(array $queries = []): GetReportSchedulesResponse
+    public function getReportSchedules(array $queries = [])
     {
-        return $this->client->request('getReportSchedules', 'GET', '/reports/2020-09-04/schedules',
+        return $this->client->request('getReportSchedules', 'GET', '/reports/2021-06-30/schedules',
             [
                 'query' => $queries,
             ]
@@ -199,11 +198,11 @@ class Reports extends AbstractAPI
      * For more information, see "Usage Plans and Rate Limits" in the Selling Partner
      * API documentation.
      *
-     * @return CreateReportScheduleResponse
+     * @return CreateReportScheduleResponse|ErrorList
      */
-    public function createReportSchedule(CreateReportScheduleSpecification $Model): CreateReportScheduleResponse
+    public function createReportSchedule(CreateReportScheduleSpecification $Model)
     {
-        return $this->client->request('createReportSchedule', 'POST', '/reports/2020-09-04/schedules',
+        return $this->client->request('createReportSchedule', 'POST', '/reports/2021-06-30/schedules',
             [
                 'json' => $Model->getArrayCopy(),
             ]
@@ -225,11 +224,11 @@ class Reports extends AbstractAPI
      * @param $reportScheduleId The identifier for the report schedule. This identifier
      * is unique only in combination with a seller ID.
      *
-     * @return GetReportScheduleResponse
+     * @return ReportSchedule|ErrorList
      */
-    public function getReportSchedule($reportScheduleId): GetReportScheduleResponse
+    public function getReportSchedule($reportScheduleId)
     {
-        return $this->client->request('getReportSchedule', 'GET', "/reports/2020-09-04/schedules/{$reportScheduleId}",
+        return $this->client->request('getReportSchedule', 'GET', "/reports/2021-06-30/schedules/{$reportScheduleId}",
             [
             ]
         );
@@ -250,11 +249,11 @@ class Reports extends AbstractAPI
      * @param $reportScheduleId The identifier for the report schedule. This identifier
      * is unique only in combination with a seller ID.
      *
-     * @return CancelReportScheduleResponse
+     * @return ErrorList
      */
-    public function cancelReportSchedule($reportScheduleId): CancelReportScheduleResponse
+    public function cancelReportSchedule($reportScheduleId): ErrorList
     {
-        return $this->client->request('cancelReportSchedule', 'DELETE', "/reports/2020-09-04/schedules/{$reportScheduleId}",
+        return $this->client->request('cancelReportSchedule', 'DELETE', "/reports/2021-06-30/schedules/{$reportScheduleId}",
             [
             ]
         );
@@ -262,8 +261,6 @@ class Reports extends AbstractAPI
 
     /**
      * Returns the information required for retrieving a report document's contents.
-     * This includes a presigned URL for the report document as well as the information
-     * required to decrypt the document's contents.
      *
      * **Usage Plan:**
      *
@@ -276,11 +273,11 @@ class Reports extends AbstractAPI
      *
      * @param $reportDocumentId The identifier for the report document
      *
-     * @return GetReportDocumentResponse
+     * @return ReportDocument|ErrorList
      */
-    public function getReportDocument($reportDocumentId): GetReportDocumentResponse
+    public function getReportDocument($reportDocumentId)
     {
-        return $this->client->request('getReportDocument', 'GET', "/reports/2020-09-04/documents/{$reportDocumentId}",
+        return $this->client->request('getReportDocument', 'GET', "/reports/2021-06-30/documents/{$reportDocumentId}",
             [
             ]
         );

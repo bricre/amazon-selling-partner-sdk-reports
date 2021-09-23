@@ -6,5 +6,8 @@ use OpenAPI\Runtime\AbstractModel as AbstractModel;
 
 class ReportScheduleList extends AbstractModel
 {
-    protected $isRawObject = true;
+    /**
+     * @var \Amz\Reports\Model\ReportSchedule[]
+     */
+    public $reportSchedules = null;
 }

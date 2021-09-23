@@ -4,13 +4,20 @@ namespace Amz\Reports\Model;
 
 use OpenAPI\Runtime\AbstractModel as AbstractModel;
 
+/**
+ * The response for the createReportSchedule operation.
+ */
 class CreateReportScheduleResponse extends AbstractModel
 {
     /**
-     * The identifier for the report schedule. This identifier is unique only in
-     * combination with a seller ID.
+     * The payload for the createReportSchedule operation.
      *
-     * @var string
+     * @var \Amz\Reports\Model\CreateReportScheduleResult
      */
-    public $reportScheduleId = null;
+    public $payload = null;
+
+    /**
+     * @var \Amz\Reports\Model\ErrorList
+     */
+    public $errors = null;
 }

@@ -9,8 +9,5 @@ use OpenAPI\Runtime\AbstractModel as AbstractModel;
  */
 class ErrorList extends AbstractModel
 {
-    /**
-     * @var \Amz\Reports\Model\Error[]
-     */
-    public $errors = null;
+    protected $isRawObject = true;
 }

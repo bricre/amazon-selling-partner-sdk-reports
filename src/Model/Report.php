@@ -82,8 +82,8 @@ class Report extends AbstractModel
 
     /**
      * The identifier for the report document. Pass this into the getReportDocument
-     * operation to get the information you will need to retrieve the report document's
-     * contents.
+     * operation to get the information you will need to retrieve and decrypt the
+     * report document's contents.
      *
      * @var string
      */

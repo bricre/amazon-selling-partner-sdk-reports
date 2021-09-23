@@ -10,11 +10,11 @@ use OpenAPI\Runtime\AbstractModel as AbstractModel;
 class GetReportsResponse extends AbstractModel
 {
     /**
-     * The reports.
+     * The payload for the getReports operation.
      *
      * @var \Amz\Reports\Model\ReportList
      */
-    public $reports = null;
+    public $payload = null;
 
     /**
      * Returned when the number of results exceeds pageSize. To get the next page of
@@ -23,4 +23,9 @@ class GetReportsResponse extends AbstractModel
      * @var string
      */
     public $nextToken = null;
+
+    /**
+     * @var \Amz\Reports\Model\ErrorList
+     */
+    public $errors = null;
 }

@@ -22,11 +22,6 @@ class ReportDocument extends AbstractModel
     public $url = null;
 
     /**
-     * @var \Amz\Reports\Model\ReportDocumentEncryptionDetails
-     */
-    public $encryptionDetails = null;
-
-    /**
      * If present, the report document contents have been compressed with the provided
      * algorithm.
      *
